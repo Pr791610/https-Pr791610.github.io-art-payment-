@@ -1,0 +1,22 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Node (ако додадеш JS пакети)
+node_modules/
+
+# Logs
+*.log
+
+# Env / secrets
+.env
+
+# PHP
+vendor/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+*.swp
