@@ -1,9 +1,9 @@
-# https-Pr791610.github.io-art-payment-
+# Pr791610/https-Pr791610.github.io-art-payment-
 Bankart payment gateway integration (payment.js + PHP).
 # 🎨 N.M. MANASIA – Art Payment Hub System
 
 ## 🌐 Live Hub
-👉 https://Pr791610.github.io-art-payment-
+👉 Pr791610/https-Pr791610.github.io-art-payment-
 
 ---
 
