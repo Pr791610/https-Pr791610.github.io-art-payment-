@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ART & BOOKS HUB</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#050505;
+color:white;
+}
+
+header{
+padding:40px;
+text-align:center;
+background:#111;
+border-bottom:1px solid gold;
+}
+
+header h1{
+color:gold;
+margin:0;
+letter-spacing:2px;
+}
+
+header p{
+color:#aaa;
+font-size:14px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:16px;
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+background:#111;
+border-radius:14px;
+padding:15px;
+border:1px solid rgba(255,215,0,0.2);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
+border:1px solid gold;
+}
+
+.title{
+color:gold;
+font-size:18px;
+font-weight:bold;
+}
+
+.desc{
+color:#aaa;
+font-size:13px;
+margin-top:6px;
+line-height:1.4;
+}
+
+a{
+display:block;
+margin-top:12px;
+padding:10px;
+background:gold;
+color:black;
+text-align:center;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ART & BOOKS HUB</h1>
+<p>Digital Museum System • Books • Gallery • Certificates • Humanitarian • QR • Store</p>
+</header>
+
+<div class="container">
+
+<!-- BOOK I -->
+<div class="card">
+<div class="title">BOOK I</div>
+<div class="desc">Knowledge and Life (Artistic Edition)</div>
+<a href="books/book1.pdf" target="_self">OPEN PDF</a>
+</div>
+
+<!-- BOOK II -->
+<div class="card">
+<div class="title">BOOK II</div>
+<div class="desc">Знаење и Живот (Macedonian Edition)</div>
+<a href="books/book2.pdf" target="_self">OPEN PDF</a>
+</div>
+
+<!-- GALLERY -->
+<div class="card">
+<div class="title">GALLERY VAULT</div>
+<div class="desc">Artistic Collections & Works</div>
+<a href="gallery/index.html" target="_self">OPEN</a>
+</div>
+
+<!-- CERTIFICATES -->
+<div class="card">
+<div class="title">CERTIFICATES VAULT</div>
+<div class="desc">Museum Proof & Ownership Docs</div>
+<a href="certificates/index.html" target="_self">OPEN</a>
+</div>
+
+<!-- HUMANITARIAN -->
+<div class="card">
+<div class="title">HUMANITARIAN</div>
+<div class="desc">Projects & Activities</div>
+<a href="humanitarian/index.html" target="_self">OPEN</a>
+</div>
+
+<!-- QR -->
+<div class="card">
+<div class="title">QR COLLECTION</div>
+<div class="desc">Art, Certificates & Payment QR</div>
+<a href="qr/index.html" target="_self">OPEN</a>
+</div>
+
+<!-- STORE -->
+<div class="card">
+<div class="title">ART STORE</div>
+<div class="desc">Stripe Payment System</div>
+<a href="store/index.html" target="_self">OPEN</a>
+</div>
+
+</div>
+
+</body>
+</html>
