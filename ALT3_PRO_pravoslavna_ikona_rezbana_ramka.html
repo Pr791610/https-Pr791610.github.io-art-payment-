@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="mk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALT3 PRO — Православна икона со резбана рамка</title>
+<style>
+:root{font-family:Georgia,'Times New Roman',serif;color:#f5efe4;background:#100b0b}
+*{box-sizing:border-box}body{margin:0;padding:14px;background:radial-gradient(ellipse at top,#3a1112 0%,#160d0c 48%,#090807 100%)}.app{max-width:1100px;margin:auto}
+h1{font-size:1.55rem;margin:4px 0 8px;color:#e7c77e;letter-spacing:.04em;text-shadow:0 1px 12px #8b5a20}p{line-height:1.45;color:#d0c7b9}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px}
+.panel{background:linear-gradient(145deg,rgba(65,25,22,.94),rgba(24,17,14,.98));border:1px solid #9a7536;border-radius:14px;padding:13px;box-shadow:0 8px 28px #0009,inset 0 0 18px #c49a3610}
+.preview{background:radial-gradient(ellipse,#d6c8a7,#6b4c32);border:1px solid #b18a45;border-radius:10px;min-height:430px;display:flex;align-items:center;justify-content:center;padding:8px}
+svg{width:100%;height:auto;max-height:68vh}
+label{display:block;font-size:.92rem;margin:12px 0 5px}
+input,select,button{width:100%;padding:10px;border-radius:8px;border:1px solid #9d7a3e;background:#170f0e;color:#fff4dc;font-size:1rem}
+input[type=file]{font-size:.85rem;padding:8px}button{background:linear-gradient(#e3c77e,#9d702b);color:#1b1008;font-weight:bold;border:1px solid #f3dda0;margin-top:10px;cursor:pointer;box-shadow:inset 0 1px #fff5,0 3px 10px #0006}
+button.alt{background:linear-gradient(#4c2521,#251311);color:#f5dfaa;border-color:#a8864c}
+.note{font-size:.83rem;color:#c7bdad}.status{font-size:.9rem;color:#f0d49b}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.preview{min-height:310px}}
+</style>
+</head>
+<body><div class="app">
+<h1>ALT3 PRO • ПРАВОСЛАВНА ИКОНА</h1>
+<p><strong style="color:#e7c77e">Музејска изработка • античко злато • декоративна резба</strong></p>
+<p>Постави ја својата икона, избери облик и богато украсена рамка, па преземи PNG со проѕирна околина или SVG за подготовка за печатење. Стилот е темноцрвен, кафеав и античко-златен.</p>
+<div class="layout">
+<section class="panel"><div class="preview"><svg id="art" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" aria-label="Преглед на икона"></svg></div>
+<p class="note">Прегледот е приближен. Надвор од избраниот облик останува проѕирно во PNG-датотеката. Провери ги деталите пред печатење.</p></section>
+<aside class="panel">
+<label for="photo">1. Избери слика од телефонот</label><input id="photo" type="file" accept="image/*">
+<label for="shape">2. Избери облик</label><select id="shape"><option value="arch">Арка со заоблен врв</option><option value="oval">Овален</option><option value="shield">Штитест</option><option value="ornate">Овален со странични испусти</option></select>
+<label for="fit">3. Поставување на сликата</label><select id="fit"><option value="cover">Пополнување на обликот (може да отсече делови)</option><option value="contain">Цела слика (може да останат празни делови)</option></select>
+<label for="width">4. Ширина за печатење (mm)</label><input id="width" type="number" min="20" max="600" value="100">
+<label for="height">5. Висина за печатење (mm)</label><input id="height" type="number" min="20" max="800" value="150">
+<label for="frame">6. Стил на рамката</label><select id="frame">
+<option value="carved">ALT3 PRO — богата резба и златни орнаменти</option>
+<option value="byzantine">Византиска рамка — украсни точки</option>
+<option value="double">Двојна античко-златна рамка</option>
+<option value="simple">Едноставна златна рамка</option>
+<option value="no">Без рамка</option></select>
+<label for="ornament">7. Декоративен акцент</label><select id="ornament">
+<option value="cross">Крст и орнаменти</option><option value="rosettes">Розети во аглите</option><option value="none">Без дополнителни орнаменти</option></select>
+<button id="png">Преземи PNG за печатење</button>
+<button id="svgBtn" class="alt">Преземи SVG</button>
+<button id="print" class="alt">Печати од прелистувач</button>
+<p id="status" class="status">Прво избери слика.</p>
+<p class="note">Совет: кога печатиш, избери „Actual size / 100%“ ако е достапно. Провери со линијар дали излезната големина е точна.</p>
+</aside></div></div>
+<script>
+const $=id=>document.getElementById(id);
+let imageUrl=null, imageObj=null;
+const shapes={
+ arch:'M200 18 C275 18 320 70 320 145 L320 365 C320 438 268 490 200 500 C132 490 80 438 80 365 L80 145 C80 70 125 18 200 18 Z',
+ oval:'M200 18 C295 18 345 105 345 260 C345 415 285 500 200 500 C115 500 55 415 55 260 C55 105 105 18 200 18 Z',
+ shield:'M200 18 C270 42 320 72 340 130 L320 365 Q300 450 200 500 Q100 450 80 365 L60 130 C80 72 130 42 200 18 Z',
+ ornate:'M200 18 C270 18 315 70 315 145 L315 180 L350 195 L330 225 L350 255 L315 270 L315 365 C315 438 268 490 200 500 C132 490 85 438 85 365 L85 270 L50 255 L70 225 L50 195 L85 180 L85 145 C85 70 130 18 200 18 Z'
+};
+function svgMarkup(){
+ const shape=shapes[$('shape').value], frame=$('frame').value!=='no', style=$('frame').value, ornament=$('ornament').value;
+ let imagePart='';
+ if(imageUrl){
+  const iw=imageObj.naturalWidth, ih=imageObj.naturalHeight;
+  let x=0,y=0,w=400,h=520;
+  if($('fit').value==='cover'){
+   const scale=Math.max(400/iw,520/ih);w=iw*scale;h=ih*scale;x=(400-w)/2;y=(520-h)/2;
+  }else{
+   const scale=Math.min(400/iw,520/ih);w=iw*scale;h=ih*scale;x=(400-w)/2;y=(520-h)/2;
+  }
+  imagePart=`<image href="${imageUrl}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="none" clip-path="url(#clip)"/>`;
+ } else {
+  imagePart='<rect width="400" height="520" fill="#d8c3a0" clip-path="url(#clip)"/><text x="200" y="250" text-anchor="middle" fill="#60452d" font-size="18">Избери слика</text>';
+ }
+ return `<defs><clipPath id="clip"><path d="${shape}"/></clipPath></defs>
+ ${imagePart}
+ ${frame?`<path d="${shape}" fill="none" stroke="#3b1c0d" stroke-width="16" stroke-linejoin="round"/>
+ <path d="${shape}" fill="none" stroke="#80551f" stroke-width="12" stroke-linejoin="round"/>
+ <path d="${shape}" fill="none" stroke="${style==='simple'?'#d8b35c':'#c39a48'}" stroke-width="${style==='simple'?5:7}" stroke-linejoin="round"/>
+ ${style==='carved'?`<path d="${shape}" fill="none" stroke="#f4d98a" stroke-width="2.2" stroke-dasharray="2 5" stroke-linejoin="round"/>`:''}
+ ${style==='byzantine'?`<path d="${shape}" fill="none" stroke="#f4d98a" stroke-width="2" stroke-dasharray="1 8" stroke-linejoin="round"/>`:''}
+ <path d="${shape}" fill="none" stroke="#fff0b4" stroke-width="1.5" stroke-linejoin="round"/>`:''}
+ ${frame&&ornament==='cross'?`<g fill="#e7c77e" stroke="#633b17" stroke-width="1.2"><path d="M200 27 v22 M191 35 h18" stroke-width="3"/><path d="M200 471 v22 M191 479 h18" stroke-width="3"/></g>`:''}
+ ${frame&&ornament==='rosettes'?`<g fill="#d6ad5b" stroke="#6c451d" stroke-width="1.5"><circle cx="98" cy="90" r="10"/><circle cx="302" cy="90" r="10"/><circle cx="98" cy="430" r="10"/><circle cx="302" cy="430" r="10"/></g>`:''}`;
+}
+function draw(){ $('art').innerHTML=svgMarkup(); }
+$('photo').addEventListener('change',e=>{
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ if(imageUrl)URL.revokeObjectURL(imageUrl);
+ const reader=new FileReader();
+ reader.onload=()=>{
+  imageUrl=reader.result;imageObj=new Image();
+  imageObj.onload=()=>{draw();$('status').textContent='Сликата е вметната. Провери го кадрирањето и стилот на рамката пред преземање.'};
+  imageObj.onerror=()=>{$('status').textContent='Не можам да ја отворам оваа слика. Пробај JPG или PNG.'};
+  imageObj.src=imageUrl;
+ };
+ reader.readAsDataURL(file);
+});
+['shape','fit','frame','ornament'].forEach(id=>$(id).addEventListener('change',draw));
+function exportSvg(){
+ const w=Math.max(20,Number($('width').value)||100),h=Math.max(20,Number($('height').value)||150);
+ return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}mm" height="${h}mm" viewBox="0 0 400 520">${svgMarkup()}</svg>`;
+}
+function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+$('svgBtn').addEventListener('click',()=>{if(!imageUrl){$('status').textContent='Прво избери слика.';return}const w=$('width').value,h=$('height').value;download(new Blob([exportSvg()],{type:'image/svg+xml;charset=utf-8'}),`ikona-${w}x${h}mm.svg`);$('status').textContent='SVG фајлот е преземен.'});
+$('png').addEventListener('click',()=>{
+ if(!imageUrl){$('status').textContent='Прво избери слика.';return}
+ const wmm=Math.max(20,Number($('width').value)||100),hmm=Math.max(20,Number($('height').value)||150);
+ const scale=300/25.4,canvas=document.createElement('canvas');canvas.width=Math.round(wmm*scale);canvas.height=Math.round(hmm*scale);
+ const ctx=canvas.getContext('2d');const path=new Path2D(shapes[$('shape').value]);ctx.save();ctx.scale(canvas.width/400,canvas.height/520);ctx.clip(path);
+ const iw=imageObj.naturalWidth,ih=imageObj.naturalHeight;let x=0,y=0,w=400,h=520;
+ const s=$('fit').value==='cover'?Math.max(400/iw,520/ih):Math.min(400/iw,520/ih);w=iw*s;h=ih*s;x=(400-w)/2;y=(520-h)/2;ctx.drawImage(imageObj,x,y,w,h);ctx.restore();
+ if($('frame').value!=='no'){ctx.save();ctx.scale(canvas.width/400,canvas.height/520);ctx.lineJoin='round';
+    const style=$('frame').value;ctx.strokeStyle='#3b1c0d';ctx.lineWidth=16;ctx.stroke(path);
+    ctx.strokeStyle='#80551f';ctx.lineWidth=12;ctx.stroke(path);
+    ctx.strokeStyle=style==='simple'?'#d8b35c':'#c39a48';ctx.lineWidth=style==='simple'?5:7;ctx.stroke(path);
+    if(style==='carved'||style==='byzantine'){ctx.strokeStyle='#f4d98a';ctx.lineWidth=2;ctx.setLineDash(style==='carved'?[2,5]:[1,8]);ctx.stroke(path);ctx.setLineDash([]);}
+    ctx.strokeStyle='#fff0b4';ctx.lineWidth=1.5;ctx.stroke(path);
+    if($('ornament').value==='cross'){ctx.strokeStyle='#e7c77e';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(200,27);ctx.lineTo(200,49);ctx.moveTo(191,35);ctx.lineTo(209,35);ctx.moveTo(200,471);ctx.lineTo(200,493);ctx.moveTo(191,479);ctx.lineTo(209,479);ctx.stroke();}
+    if($('ornament').value==='rosettes'){[[98,90],[302,90],[98,430],[302,430]].forEach(([x,y])=>{ctx.fillStyle='#d6ad5b';ctx.strokeStyle='#6c451d';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y,10,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#5a2018';ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();});}
+    ctx.restore();}
+ canvas.toBlob(blob=>{if(blob){download(blob,`ikona-${wmm}x${hmm}mm.png`);$('status').textContent='PNG преземен со 300 DPI приближна резолуција.'}else $('status').textContent='Не успеа преземањето; пробај SVG.'},'image/png');
+});
+$('print').addEventListener('click',()=>{
+ if(!imageUrl){$('status').textContent='Прво избери слика.';return}
+ const w=$('width').value,h=$('height').value;const svg=exportSvg();
+ const win=window.open('','_blank');
+ if(!win){$('status').textContent='Прелистувачот го блокираше прозорецот за печатење. Преземи PNG наместо тоа.';return}
+ win.document.write(`<html><head><title>Печатење икона</title><style>@page{size:auto;margin:10mm}body{margin:0}svg{width:${w}mm;height:${h}mm}</style></head><body>${svg}<script>window.onload=()=>{window.print()}<\/script></body></html>`);win.document.close();
+});
+draw();
+</script></body></html>
